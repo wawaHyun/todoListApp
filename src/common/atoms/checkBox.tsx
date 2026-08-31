@@ -19,7 +19,7 @@ export function Checkbox({ checked, onChange, title, style }: ICheckbox) {
         }}
             onLongPress={() => { setIsLongPressed(true); }}
             delayLongPress={1000}
-            className='border border-blue-500 w-full'>
+            className='w-full'>
             {isLongPressed ? (
                 <View className='flex-row w-full justify-center bg-slate-200'>
                     <ModifyButton click={() => console.log('press the ModifyButton')} style='w-[15%]' />

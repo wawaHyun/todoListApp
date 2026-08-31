@@ -2,7 +2,7 @@
 export interface IRecord {
     id?: number,
     status?: boolean,
-    memo?: string,
+    date?: string,
     completedAt?: string,
     deletedAt? : string,
 

@@ -10,7 +10,7 @@ interface IButton {
 export function BottomButton({ children, click, style='', select=false}: IButton) {
     return (
         <Pressable onPress={click}
-            className={`border rounded-t-lg border-b-0 pressed:text-slate-500 bg-slate-100 ${style} ${select ? 'bg-white' : ''}`} >
+            className={`rounded-t-lg pressed:text-slate-500 bg-slate-100 ${style} ${select ? 'bg-white' : ''}`} >
             <Text className="text-4xl">{children}</Text>
         </Pressable>
     )
@@ -27,7 +27,7 @@ export const RoundButton = ({ children, click, style='', select=false}: IButton)
 
 export const ModifyButton = ({ children, click, style='', select=false}: IButton) => {
     return (
-        <Pressable onPress={click} className={`w-[15%] border border-red-500 ${style} ${select ? 'bg-slate-500' : ''}`}>
+        <Pressable onPress={click} className={`w-[15%] ${style} ${select ? 'bg-slate-500' : ''}`}>
             <Text className="text-center text-2xl">✏️</Text>
         </Pressable>
     )
@@ -35,7 +35,7 @@ export const ModifyButton = ({ children, click, style='', select=false}: IButton
 
 export const AddButton = ({ children, click, style='', select=false}: IButton) => {
     return (
-        <Pressable onPress={click} className={`w-[15%] border border-red-500 ${style} ${select ? 'bg-slate-500' : ''}`}>
+        <Pressable onPress={click} className={`w-[15%] ${style} ${select ? 'bg-slate-500' : ''}`}>
             <Text className="text-center text-2xl">+</Text>
         </Pressable>
     )
