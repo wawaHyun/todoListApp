@@ -1,6 +1,8 @@
 import { AddButton, ModifyButton } from "@/common/atoms/button";
 import { Checkbox } from "@/common/atoms/checkBox";
+import { todayDate } from "@/common/atoms/today";
 import { groupDummy, recordDummy, routineDummy } from "@/common/data/routine.dummy";
+import { DateTitle } from "@/component/routine/dateTitle";
 import { IGgroup, IRecord } from "@/domain/common.model";
 import { IRoutine } from "@/domain/routine.model";
 import { View, Text } from "react-native";
@@ -12,16 +14,18 @@ export default function HomePage() {
   const recordList = recordDummy;
   const groupList = groupDummy;
 
-  const today = '2026-08-31';
   const todayRecords = recordList.filter(
-    record => record.date === today);
+    record => record.date === todayDate);
 
   return (
     <View className="flex-1 grid-rows-2 ">
-      <View className="h-[10%] justify-center bg-slate-200"><Text className="text-3xl">{today}</Text></View>
 
+      {/* <View className="h-[10%] justify-center bg-slate-200"><Text className="text-3xl">{todayDate}</Text></View> */}
+      <View className="h-[10%] justify-center bg-slate-200"><DateTitle /></View>
       <View className="min-h-[50%] ">
-        <Text className="text-3xl bg-slate-400">✅ My routine group</Text>
+        <View className="h-px my-3 w-full bg-gray-300" />
+        <Text className="text-3xl mt-2">✅ My routine group</Text>
+
         <View className="h-px my-2 w-full " />
 
         {groupList.map((group) => {
@@ -43,14 +47,12 @@ export default function HomePage() {
                 const routine = routineList.find(routine => routine.id === record.routineId);
                 return (
                   <View key={record.id} className="flex-row">
-                    <Checkbox checked={record.status ?? false} onChange={() => console.log(`${routine?.name} Checkbox pressed`)} 
-                    title={routine?.name ?? ''} style="`${}`" />
+                    <Checkbox checked={record.status ?? false} onChange={() => console.log(`${routine?.name} Checkbox pressed`)}
+                      title={routine?.name ?? ''} style="`${}`" />
                   </View>
                 );
               })}
-
               <View className="h-px my-3 w-full bg-gray-300" />
-
             </View>
           );
         })}
@@ -58,6 +60,7 @@ export default function HomePage() {
       </View>
 
       <View className="min-h-[10%] ">
+        <View className="h-px my-3 w-full bg-gray-300" />
         <Text className="text-3xl">📋To-Do List</Text>
         <View className="h-px my-2 w-full " />
         {routineList && routineList.map((vv: IRoutine, i: number) =>
