@@ -16,7 +16,7 @@ export default function BottomMenu() {
           <BottomButton style="text-black w-full h-full text-center " click={()=>router.push('/')} >Routine List</BottomButton>
         </View>
            <View className="flex-1">
-          <BottomButton style="text-black w-full h-full text-center " click={()=>console.log('To-Do list 버튼 클릭')} >My Gochi</BottomButton>
+          <BottomButton style="text-black w-full h-full text-center " click={()=>router.push('/pet')} >My Gochi</BottomButton>
         </View>
       </View>
     </Pressable>

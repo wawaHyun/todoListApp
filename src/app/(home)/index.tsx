@@ -20,67 +20,72 @@ export default function HomePage() {
   const todayRecords = recordList.filter(
     record => record.date === todayDate);
 
-   const routienAct  = useRoutineViewAction();
-   const routineInfo = useRoutineViewStack();
-
-   const handleForm = (e: any) => {
-    routienAct.update({ ...routineInfo, [e.target.name]: e.target.value });
-    console.log('userInfo : ' + JSON.stringify(routineInfo))
-}
+  const routienAct = useRoutineViewAction();
+  const routineInfo = useRoutineViewStack();
 
 
-// const handleSubmit = async (e: any) => {
-//   if (userInfo.username && userInfo.password) {
-//       existApi()
-//           .then((res: boolean | { status: number; }) => {
-//               if (typeof res === 'boolean' && res === true) {
-//                   // console.log("existApi page true: "+ res);
-//                   Swal.fire({
-//                       icon: "warning",
-//                       title: "회원가입 실패",
-//                       text: "이미 있는 아이디입니다.\n다시 한번 시도해주세요.",
-//                   })
-//               }
+  const handleForm = (name: string, value: string) => {
+    routienAct.update({ ...routineInfo, [name]: value });
+    console.log('routineInfo : ' + JSON.stringify(routineInfo))
+  };
 
-//               if (typeof res !== 'boolean' || res === false) {
-//                   // console.log("existApi page false: "+res)
-//                   joinApi()
-//                       .then((res: boolean | { status: number; }) => {
-//                           if (res = true) {
-//                               actionJoin.clean()
-//                               Swal.fire({
-//                                   icon: "success",
-//                                   title: "회원가입 완료",
-//                                   text: "회원가입되었습니다.\n로그인 해주십시오.",
-//                               })
-//                               console.log("page : " + res)
-//                               router.push(`/login`)
-//                           }
-//                           if (res = false) {
-//                               Swal.fire({
-//                                   icon: "warning",
-//                                   title: "회원가입 실패",
-//                                   text: "다시 한번 시도해주세요.",
-//                               })
-//                           }
-//                       })
-//                       .catch((error) => {
-//                           console.log("auth page err: ", error)
-//                       })
-//               }
-//           })
-//   } else {
-//       Swal.fire({
-//           icon: "warning",
-//           title: "필수정보 누락",
-//           text: "정보를 입력해주세요.",
-//       })
-//   }
-// }
+
+  const handleSubmit = async (e: any) => {
+    const data = { ...routineInfo, date: todayDate };
+    routienAct.update(data);
+    console.log('save routineInfo : ' + JSON.stringify(data))
+
+    // if (routineInfo.name) {
+    //       existApi()
+    //           .then((res: boolean | { status: number; }) => {
+    //               if (typeof res === 'boolean' && res === true) {
+    //                   // console.log("existApi page true: "+ res);
+    //                   Swal.fire({
+    //                       icon: "warning",
+    //                       title: "회원가입 실패",
+    //                       text: "이미 있는 아이디입니다.\n다시 한번 시도해주세요.",
+    //                   })
+    //               }
+
+    //               if (typeof res !== 'boolean' || res === false) {
+    //                   // console.log("existApi page false: "+res)
+    //                   joinApi()
+    //                       .then((res: boolean | { status: number; }) => {
+    //                           if (res = true) {
+    //                               actionJoin.clean()
+    //                               Swal.fire({
+    //                                   icon: "success",
+    //                                   title: "회원가입 완료",
+    //                                   text: "회원가입되었습니다.\n로그인 해주십시오.",
+    //                               })
+    //                               console.log("page : " + res)
+    //                               router.push(`/login`)
+    //                           }
+    //                           if (res = false) {
+    //                               Swal.fire({
+    //                                   icon: "warning",
+    //                                   title: "회원가입 실패",
+    //                                   text: "다시 한번 시도해주세요.",
+    //                               })
+    //                           }
+    //                       })
+    //                       .catch((error) => {
+    //                           console.log("auth page err: ", error)
+    //                       })
+    //               }
+    //           })
+    //   } else {
+    //       Swal.fire({
+    //           icon: "warning",
+    //           title: "필수정보 누락",
+    //           text: "정보를 입력해주세요.",
+    //       })
+    // }
+  }
 
 
   return (
-    <View className="flex-1 grid-rows-2 ">
+    <View className="flex-1 grid-rows-2">
 
       {/* <View className="h-[10%] justify-center bg-slate-200"><Text className="text-3xl">{todayDate}</Text></View> */}
       <View className="h-[10%] justify-center bg-slate-200"><DateTitle /></View>
@@ -121,7 +126,7 @@ export default function HomePage() {
       </View>
 
       <View>
-        <WhiteInputBox click={()=>console.log('inputBox save')} onchange={handleForm}/>
+        <WhiteInputBox click={() => handleSubmit(routineInfo)} onChangeText={(value) => handleForm('name', value)} />
       </View>
 
       <View className="min-h-[10%] ">

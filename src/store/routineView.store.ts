@@ -15,7 +15,7 @@ const useRoutineViewStore = create<routineViewState>()((set,get) => ({
             id : 0, 
             name:'', 
             status: false,
-            date : 0,
+            date : '',
             ggroupId:0 
     },
     action: {
@@ -24,7 +24,7 @@ const useRoutineViewStore = create<routineViewState>()((set,get) => ({
             id : 0, 
             name:'',
             status:false,
-            date : 0,
+            date : '',
             ggroupId:0
         }, }), console.log("RoutineVeiwState clean : ", get().data)}
     },

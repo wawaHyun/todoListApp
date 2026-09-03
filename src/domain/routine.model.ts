@@ -13,9 +13,9 @@ export interface ITodo {
 
 
 export interface IroutineView {
-    id: number;
-    name: string;
-    status: boolean;
-    date: number;
-    ggroupId: number;
+    id?: number;
+    name?: string;
+    status?: boolean;
+    date?: string;
+    ggroupId?: number;
 }
