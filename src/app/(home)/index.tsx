@@ -1,5 +1,6 @@
 import { AddButton, ModifyButton } from "@/common/atoms/button";
 import { Checkbox } from "@/common/atoms/checkBox";
+import { WhiteInputBox } from "@/common/atoms/inputBox";
 import { todayDate } from "@/common/atoms/today";
 import { groupDummy, recordDummy, routineDummy } from "@/common/data/routine.dummy";
 import { DateTitle } from "@/component/routine/dateTitle";
@@ -16,6 +17,8 @@ export default function HomePage() {
 
   const todayRecords = recordList.filter(
     record => record.date === todayDate);
+
+  // const routineInput  =
 
   return (
     <View className="flex-1 grid-rows-2 ">
@@ -56,7 +59,10 @@ export default function HomePage() {
             </View>
           );
         })}
+      </View>
 
+      <View>
+        <WhiteInputBox click={}/>
       </View>
 
       <View className="min-h-[10%] ">
