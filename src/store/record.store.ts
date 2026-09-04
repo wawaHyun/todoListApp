@@ -1,5 +1,5 @@
 
-import { IroutineView } from '@/domain/common.model'
+import { IroutineView } from '@/domain/routine.model'
 import { create } from 'zustand'
 
 interface routineViewState {
@@ -16,8 +16,7 @@ const useRoutineViewStore = create<routineViewState>()((set,get) => ({
             name:'', 
             status: false,
             date : '',
-            ggroupId:0,
-            recordId:0,
+            ggroupId:0 
     },
     action: {
         update: (data: IroutineView) => set({ data }),
@@ -26,8 +25,7 @@ const useRoutineViewStore = create<routineViewState>()((set,get) => ({
             name:'',
             status:false,
             date : '',
-            ggroupId:0,
-            recordId:0,
+            ggroupId:0
         }, }), console.log("RoutineVeiwState clean : ", get().data)}
     },
 }))

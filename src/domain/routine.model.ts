@@ -2,6 +2,7 @@ export interface IRoutine {
     id?: number,
     name?: string,
 
+    userId?:number,
     ggroupId?: number,
 }
 
@@ -9,13 +10,24 @@ export interface ITodo {
     id?: number,
     name?: string,
 
+    userId?:number,
 }
 
+export interface IRecord {
+    id?: number,
+    status?: boolean,
+    date?: string,
+    completedAt?: string,
+    deletedAt? : string,
 
-export interface IroutineView {
-    id?: number;
-    name?: string;
-    status?: boolean;
-    date?: string;
-    ggroupId?: number;
+    userId?:number,
+    routineId?: number,
+    todoId?: number
+}
+
+export interface IGgroup {
+    id?: number,
+    name?: string
+
+    userId?:number,
 }

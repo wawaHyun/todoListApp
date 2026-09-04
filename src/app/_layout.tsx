@@ -21,21 +21,11 @@ function AppLayout() {
         paddingBottom: insets.bottom,
       }}
     >
-  {pathname !== '/pet' && (
-    <View className="z-10 flex-1 absolute right-4 top-20">
-        <PetNavi />
-    </View>
-)}
-
-  {/* Content 영역 */}
+      
   <View className="z-0 flex-[10] ">
     <Slot />
   </View>
 
-  {/* Bottom 영역 */}
-  <View className="z-0 flex-1">
-    <BottomMenu />
-  </View>
 </View>
   );
 }

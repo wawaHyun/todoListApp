@@ -44,8 +44,8 @@ export const AddButton = ({ children, click, style='', select=false}: IButton) =
 export const DeleteButton = ({ click, style='', select=false}: IButton) => {
     return (
         <Pressable onPress={click}
-            className={`w-[15%] border border-red-500 ${style} ${select ? 'bg-slate-300' : ''}`}>
-            <Text className="text-center text-2xl">X</Text>
+            className={`w-[15%] ${style} ${select ? 'bg-slate-300' : ''}`}>
+            <Text className="text-center text-2xl mt-1">X</Text>
         </Pressable>
     )
 }

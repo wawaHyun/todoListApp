@@ -15,7 +15,7 @@ interface IPet {
 export function PetIcon({ style = '', select = false, status = 'normal' }: IPet) {
     return (
         <View 
-            className={`w-[100px] h-[100px] rounded-full border ${style} ${select ? '' : ''}`} >
+            className={`w-[100px] h-[100px] rounded-full ${style} ${select ? '' : ''}`} >
             <Text className="text-8xl text-center">🐣</Text>
         </View>
     )

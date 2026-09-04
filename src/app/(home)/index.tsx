@@ -4,10 +4,10 @@ import { WhiteInputBox } from "@/common/atoms/inputBox";
 import { todayDate } from "@/common/atoms/today";
 import { groupDummy, recordDummy, routineDummy } from "@/common/data/routine.dummy";
 import { DateTitle } from "@/component/routine/dateTitle";
-import { IGgroup, IRecord } from "@/domain/common.model";
-import { IRoutine } from "@/domain/routine.model";
+import { IRecord, IRoutine } from "@/domain/routine.model";
 import { useRoutineViewAction, useRoutineViewStack } from "@/store/routineView.store";
-import { useReducer } from "react";
+import { useLocalSearchParams } from "expo-router";
+import { useState } from "react";
 import { View, Text } from "react-native";
 
 
@@ -17,12 +17,17 @@ export default function HomePage() {
   const recordList = recordDummy;
   const groupList = groupDummy;
 
-  const todayRecords = recordList.filter(
-    record => record.date === todayDate);
+   const { date } = useLocalSearchParams<{ date?: string }>();
+    const specifiedDate = date ?? todayDate;
+
+  const [todayRecords, setTodayRecords] = useState<IRecord[]>(
+    recordList.filter(record => record.date === specifiedDate)
+  );
 
   const routienAct = useRoutineViewAction();
   const routineInfo = useRoutineViewStack();
 
+  const [longPressedId, setLongPressedId] = useState<number | null>(null);
 
   const handleForm = (name: string, value: string) => {
     routienAct.update({ ...routineInfo, [name]: value });
@@ -88,7 +93,7 @@ export default function HomePage() {
     <View className="flex-1 grid-rows-2">
 
       {/* <View className="h-[10%] justify-center bg-slate-200"><Text className="text-3xl">{todayDate}</Text></View> */}
-      <View className="h-[10%] justify-center bg-slate-200"><DateTitle /></View>
+      <View className="h-[10%] justify-center bg-slate-200"><DateTitle today={specifiedDate} /></View>
       <View className="min-h-[50%] ">
         <View className="h-px my-3 w-full bg-gray-300" />
         <Text className="text-3xl mt-2">✅ My routine group</Text>
@@ -114,8 +119,14 @@ export default function HomePage() {
                 const routine = routineList.find(routine => routine.id === record.routineId);
                 return (
                   <View key={record.id} className="flex-row">
-                    <Checkbox checked={record.status ?? false} onChange={() => console.log(`${routine?.name} Checkbox pressed`)}
-                      title={routine?.name ?? ''} style="`${}`" />
+                    <Checkbox checked={record.status ?? false} title={routine?.name ?? ''}
+                      isLongPressed={longPressedId === record.id} onLongPress={() => setLongPressedId(record.id!)}
+                      onChange={() => {
+                        setLongPressedId(null); 
+                        setTodayRecords(prev => prev.map(item => item.id === record.id ?
+                          { ...item, status: !(item.status ?? false) } : item));
+                        console.log('recordId:', record.id,'ggroupId:',  group.id);
+                      }} />
                   </View>
                 );
               })}
@@ -135,7 +146,7 @@ export default function HomePage() {
         <View className="h-px my-2 w-full " />
         {routineList && routineList.map((vv: IRoutine, i: number) =>
           <View key={vv.id} className="flex-row min-h-3 ">
-            <Checkbox key={vv.id} checked={true} onChange={() => console.log(`${vv.name} Checkbox pressed`)} title={vv.name + ''} />
+            <Checkbox checked={false} title={vv?.name ?? ''} />
           </View>
         )}
         <AddButton click={() => console.log('press the AddButton')} style='w-[15%] w-full' />
