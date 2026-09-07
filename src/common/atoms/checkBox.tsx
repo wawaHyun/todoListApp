@@ -4,22 +4,21 @@ import { useState } from 'react';
 
 interface ICheckbox {
     checked: boolean;
-    onChange?: () => void;
+    onPress?: () => void;
     onLongPress?: () => void;
     title?: string;
     style?: string;
     isLongPressed?: boolean;
 }
 
-
-export function Checkbox({ checked, onChange, onLongPress, title, style, isLongPressed }: ICheckbox) {
+export function Checkbox({ checked, onPress, onLongPress, title, style, isLongPressed }: ICheckbox) {
     return (
-        <Pressable onPress={onChange} onLongPress={onLongPress} delayLongPress={1000} className="w-full">
+        <Pressable onPress={onPress} onLongPress={onLongPress} delayLongPress={500} className="w-full">
             {isLongPressed ? (
                 <View className="flex-row w-full justify-center bg-slate-200">
-                    <ModifyButton click={() => console.log('press the ModifyButton')} style="w-[15%]" />
+                    <ModifyButton onPress={() => console.log('press the ModifyButton')} style="w-[15%]" />
                     <Text> : </Text>
-                    <DeleteButton click={() => console.log('press the DeleteButton')} style="w-[15%]" />
+                    <DeleteButton onPress={() => console.log('press the DeleteButton')} style="w-[15%]" />
                 </View>
             ) : (
                 <View className={`flex-row p-1 ${style ?? ''}`}>

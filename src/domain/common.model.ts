@@ -15,3 +15,8 @@ export interface IroutineView {
     ggroupId?: number;
     recordId?: number;
 }
+
+export interface IPetScript {
+    id? : number,
+    script : string[],
+}

@@ -1,5 +1,5 @@
-import { Pressable, TextInput, View, Text, TextInputProps } from "react-native";
-import { AddButton } from "./button";
+import { TextInput, View } from "react-native";
+import { DoneButton } from "./button";
 
 interface Iinputbox {
     children?: React.ReactNode;
@@ -16,7 +16,7 @@ export const WhiteInputBox = ({ children, click, onChangeText, value, style = ''
         <View className="flex-row gap-2">
             <TextInput placeholder="루틴을 작성하세요." className="flex-1 bg-white rounded-lg px-4 py-3"
                 onChangeText={onChangeText} value={value} />
-            <AddButton click={click} />
+            <DoneButton onPress={click} />
         </View>
     )
 }

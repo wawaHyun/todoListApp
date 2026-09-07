@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { View, Text, Pressable } from 'react-native';
+import { PetScript } from '@/common/data/pet.dummy';
+import LottieView from 'lottie-react-native';
 
 export default function PetPage() {
     const router = useRouter();
@@ -11,10 +13,9 @@ export default function PetPage() {
     const nextExp = 1000;
     const expPercent = Math.min((exp / nextExp) * 100, 100);
 
-    const messages = ['오늘도 화이팅!', '안녕! 좋은 아침이야!', '오늘도 나랑 같이 해볼까?', '조금만 더 힘내자!', '루틴 하나 완료할까?', '오늘도 잘하고 있어!'];
-
     const handlePetPress = () => {
-        setMessage(messages[Math.floor(Math.random() * messages.length)]);
+        const pet = PetScript.find(item => item.id === 0);
+        if (pet) setMessage(pet.script[Math.floor(Math.random() * pet.script.length)]);
     };
 
     return (
@@ -29,8 +30,8 @@ export default function PetPage() {
 
             <View className="items-center justify-center h-[38%]">
                 <Pressable onPress={handlePetPress} className="items-center">
-                    <Text className="text-8xl">🐣</Text>
                     <Text className="text-xl font-bold text-slate-700 mt-5">My Pet</Text>
+                    <LottieView source={require('@/assets/Loadercatonp.json')} autoPlay loop style={{ width: 150, height: 150 }} />
                 </Pressable>
                 <View className="bg-slate-100 rounded-2xl px-5 py-3 mt-4">
                     <Text className="text-base text-slate-600">{message}</Text>
