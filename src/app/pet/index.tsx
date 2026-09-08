@@ -21,7 +21,7 @@ export default function PetPage() {
     return (
         <View className="flex-1 bg-white px-5 pt-8">
             <View className="flex-row items-center justify-between">
-                <Pressable onPress={() => router.push('/')} className="px-2 py-1">
+                <Pressable onPress={() => router.push('./routine')} className="px-2 py-1">
                     <Text className="text-base text-slate-500">← HOME</Text>
                 </Pressable>
                 <Text className="text-2xl font-bold text-slate-700">Lv. {level}</Text>
@@ -31,7 +31,7 @@ export default function PetPage() {
             <View className="items-center justify-center h-[38%]">
                 <Pressable onPress={handlePetPress} className="items-center">
                     <Text className="text-xl font-bold text-slate-700 mt-5">My Pet</Text>
-                    <LottieView source={require('@/assets/Loadercatonp.json')} autoPlay loop style={{ width: 150, height: 150 }} />
+                    <LottieView source={require('@/assets/Loadercat.json')} autoPlay loop style={{ width: 150, height: 150 }} />
                 </Pressable>
                 <View className="bg-slate-100 rounded-2xl px-5 py-3 mt-4">
                     <Text className="text-base text-slate-600">{message}</Text>

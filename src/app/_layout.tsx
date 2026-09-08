@@ -40,13 +40,3 @@ export default function RootLayout() {
     </SafeAreaProvider>
   );
 }
-
-// export default function RootLayout() {
-//   return (
-//     <SafeAreaProvider>
-//       <View className="flex-1">
-//         <Slot />
-//       </View>
-//     </SafeAreaProvider>
-//   );
-// }

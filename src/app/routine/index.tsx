@@ -1,0 +1,128 @@
+import { AddButton, ModifyButton } from "@/common/atoms/button";
+import { Checkbox } from "@/common/atoms/checkBox";
+import { WhiteInputBox } from "@/common/atoms/inputBox";
+import { todayDate } from "@/common/atoms/today";
+import { groupDummy, recordDummy, routineDummy } from "@/common/data/routine.dummy";
+import { DateTitle } from "@/component/routine/dateTitle";
+import { IRecord, IRoutine } from "@/domain/routine.model";
+import { useRoutineViewAction, useRoutineViewStack } from "@/store/routineView.store";
+import { router, useLocalSearchParams } from "expo-router";
+import LottieView from "lottie-react-native";
+import { useState } from "react";
+import { View, Text, ScrollView, Pressable } from "react-native";
+
+
+export default function RoutinePage() {
+
+  const routineList = routineDummy;
+  const recordList = recordDummy;
+  const groupList = groupDummy;
+
+  const { date } = useLocalSearchParams<{ date?: string }>();
+  // const specifiedDate = date ?? todayDate;
+  const specifiedDate = date ?? '2026-09-30';
+
+  const [todayRecords, setTodayRecords] = useState<IRecord[]>(
+    recordList.filter(record => record.date === specifiedDate)
+  );
+
+  const [addingTarget, setAddingTarget] = useState<{ type: 'group' | 'ungrouped' | 'todo'; id?: number } | null>(null);
+
+  const routienAct = useRoutineViewAction();
+  const routineInfo = useRoutineViewStack();
+
+  const [longPressedId, setLongPressedId] = useState<number | null>(null);
+
+  const handleForm = (name: string, value: string) => {
+    routienAct.update({ ...routineInfo, [name]: value });
+    console.log('routineInfo : ' + JSON.stringify(routineInfo))
+  };
+
+  const handleRecordPress = (recordId: number) => {
+    setLongPressedId(null);
+    setTodayRecords(prev => prev.map(item => item.id === recordId ? { ...item, status: !(item.status ?? false) } : item));
+  };
+
+  const handleSubmit = async (e: any) => {
+    const data = { ...routineInfo, date: todayDate };
+    routienAct.update(data);
+    console.log('save routineInfo : ' + JSON.stringify(data))
+  }
+
+  return (
+    <View className="flex-1">
+
+      {/* <View className="h-[10%] justify-center bg-slate-200"><Text className="text-3xl">{todayDate}</Text></View> */}
+      <View className="justify-center bg-slate-200 my-5"><DateTitle today={specifiedDate} /></View>
+      <ScrollView>
+        <View className="flex-1">
+          <View className="h-px my-3 w-full bg-gray-300" />
+          <Text className="text-3xl mt-2">✅ My routine group</Text>
+
+          <View className="h-px my-2 w-full " />
+
+          {groupList.map((group) => {
+
+            const groupRoutines = routineList.filter(routine => routine.ggroupId === group.id);
+            const groupRecords = todayRecords.filter(record =>
+              groupRoutines.some(routine => routine.id === record.routineId)
+            );
+
+            if (groupRecords.length === 0) { return null; }
+            return (
+              <View key={group.id}>
+                <View className="flex-row">
+                  <Text className="text-xl font-bold pr-5">{group.name}</Text>
+                  <AddButton onPress={() => setAddingTarget({ type: 'group', id: group.id })} style="w-[15%]" />
+                </View>
+
+                {groupRecords.map((record) => {
+                  const routine = routineList.find(routine => routine.id === record.routineId);
+                  return (
+                    <View key={record.id} className="flex-row">
+                      <Checkbox
+                        checked={record.status ?? false}
+                        title={routine?.name ?? ''}
+                        isLongPressed={longPressedId === record.id}
+                        onLongPress={() => setLongPressedId(record.id!)}
+                        onPress={() => handleRecordPress(record.id!)}
+                      />
+                    </View>
+                  );
+                })}
+                {addingTarget?.type === 'group' && addingTarget.id === group.id &&
+                  <WhiteInputBox click={() => { handleSubmit(routineInfo), setAddingTarget(null) }} onChangeText={(value) => handleForm('name', value)} />
+                }
+                <View className="h-px my-3 w-full bg-gray-300" />
+              </View>
+            );
+          })}
+        </View>
+
+        <View>
+          {addingTarget?.type === 'ungrouped' ?
+            <WhiteInputBox click={() => { handleSubmit(routineInfo), setAddingTarget(null) }} onChangeText={(value) => handleForm('name', value)} />
+            : <AddButton onPress={() => setAddingTarget({ type: 'ungrouped' })} style="w-[15%] w-full" />}
+        </View>
+
+        <Pressable onPress={()=>router.push('./pet')}className="z-10 absolute right-0 w-[120px] h-[120px]">
+          <LottieView source={require('@/assets/Loadercat.json')} autoPlay loop style={{ width: 150, height: 150 }}/>
+        </Pressable>
+
+        <View className="">
+          <View className="h-px my-3 w-full bg-gray-300" />
+          <Text className="text-3xl">📋To-Do List</Text>
+          <View className="h-px my-2 w-full " />
+          {routineList && routineList.map((vv: IRoutine, i: number) =>
+            <View key={vv.id} className="flex-row min-h-3 ">
+              <Checkbox checked={false} title={vv?.name ?? ''} />
+            </View>
+          )}
+          {addingTarget?.type === 'todo' ?
+            <WhiteInputBox click={() => { handleSubmit(routineInfo), setAddingTarget(null) }} onChangeText={(value) => handleForm('name', value)} />
+            : <AddButton onPress={() => setAddingTarget({ type: 'todo' })} style="w-[15%] w-full" />}
+        </View>
+      </ScrollView>
+    </View>
+  );
+}

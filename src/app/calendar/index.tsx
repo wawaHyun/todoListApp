@@ -6,7 +6,7 @@ export default function CalendarPage() {
   const router = useRouter();
 
   const handleDayPress = (day: DateData) => {
-    router.push({ pathname: '/', params: { date: day.dateString } });
+    router.push({ pathname: './routine', params: { date: day.dateString } });
   };
 
   return (
