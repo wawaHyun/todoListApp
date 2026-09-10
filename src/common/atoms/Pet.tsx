@@ -14,12 +14,52 @@ interface IPet {
 
 export function PetIcon({ style = '', select = false, status = 'normal' }: IPet) {
     return (
-        <View 
+        <View
             className={`w-[100px] h-[100px] rounded-full ${style} ${select ? '' : ''}`} >
             <Text className="text-8xl text-center">🐣</Text>
         </View>
     )
 }
-
-
-
+export function PetSeepAsciiArt() {
+    return (
+        <Text>
+            ,〜⌒⌒､⌒ヽ
+            (⊂,~〜､⊃）） ) )
+            ((ξ･ ﻌ ･๑Ҙ)　)　）
+            (　~　ノ(　ﾉ ﾉ
+            ヽ〜 〜 ノノ
+            UU￣UU
+        </Text>
+    )
+}
+export function PetRabbitAsciiArt() {
+    return (
+        <Text>
+            /⌒ ヽ　  　/ ⌒ \
+            ｜   ｜|　  　|｜    |
+            ｜   ｜|　  　|｜    |
+            ｜   ｜|　  　|｜    |
+            ｜   ｜   ー  ｜       |
+            ｜ ／　  　　＼    |
+            /　　　　　　     \
+            /　      　　 　　     \
+            (　  ●　　ο　　●　 )
+        /////          /////
+        </Text>
+    )
+}
+export function PetCatAsciiArt() {
+    return (
+        <Text>
+            ／＞　　フ
+            | 　_　 _ l
+            ／` ミ＿Yノ
+            /　　　 　 |
+            /　 ヽ　　 ﾉ
+            │　　|　|　|
+            ／￣|　　 |　|　|
+            | (￣ヽ＿_ヽ_)__)
+            ＼二つ
+        </Text>
+    )
+}

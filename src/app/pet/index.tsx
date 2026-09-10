@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { View, Text, Pressable } from 'react-native';
 import { PetScript } from '@/common/data/pet.dummy';
-import LottieView from 'lottie-react-native';
+import { PetAnimation } from '@/component/pet/petAnimation';
 
 export default function PetPage() {
     const router = useRouter();
@@ -31,7 +31,7 @@ export default function PetPage() {
             <View className="items-center justify-center h-[38%]">
                 <Pressable onPress={handlePetPress} className="items-center">
                     <Text className="text-xl font-bold text-slate-700 mt-5">My Pet</Text>
-                    <LottieView source={require('@/assets/Loadercat.json')} autoPlay loop style={{ width: 150, height: 150 }} />
+                    <PetAnimation />
                 </Pressable>
                 <View className="bg-slate-100 rounded-2xl px-5 py-3 mt-4">
                     <Text className="text-base text-slate-600">{message}</Text>

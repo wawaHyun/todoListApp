@@ -3,11 +3,11 @@ import { Checkbox } from "@/common/atoms/checkBox";
 import { WhiteInputBox } from "@/common/atoms/inputBox";
 import { todayDate } from "@/common/atoms/today";
 import { groupDummy, recordDummy, routineDummy } from "@/common/data/routine.dummy";
+import { PetAnimation } from "@/component/pet/petAnimation";
 import { DateTitle } from "@/component/routine/dateTitle";
 import { IRecord, IRoutine } from "@/domain/routine.model";
 import { useRoutineViewAction, useRoutineViewStack } from "@/store/routineView.store";
 import { router, useLocalSearchParams } from "expo-router";
-import LottieView from "lottie-react-native";
 import { useState } from "react";
 import { View, Text, ScrollView, Pressable } from "react-native";
 
@@ -105,9 +105,9 @@ export default function RoutinePage() {
             : <AddButton onPress={() => setAddingTarget({ type: 'ungrouped' })} style="w-[15%] w-full" />}
         </View>
 
-        <Pressable onPress={()=>router.push('./pet')}className="z-10 absolute right-0 w-[120px] h-[120px]">
-          <LottieView source={require('@/assets/Loadercat.json')} autoPlay loop style={{ width: 150, height: 150 }}/>
-        </Pressable>
+          <Pressable onPress={() => router.push('./pet')} className="z-10 absolute right-0 w-[120px] h-[120px]">
+            <PetAnimation />
+          </Pressable>
 
         <View className="">
           <View className="h-px my-3 w-full bg-gray-300" />
