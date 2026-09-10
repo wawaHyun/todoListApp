@@ -1,13 +1,14 @@
-import { AddButton, ModifyButton } from "@/common/atoms/button";
+import { AddButton } from "@/common/atoms/button";
 import { Checkbox } from "@/common/atoms/checkBox";
 import { WhiteInputBox } from "@/common/atoms/inputBox";
 import { todayDate } from "@/common/atoms/today";
-import { groupDummy, recordDummy, routineDummy } from "@/common/data/routine.dummy";
+import { groupDummy, recordDummy, routineDummy, todoDummy } from "@/common/data/routine.dummy";
 import { PetAnimation } from "@/component/pet/petAnimation";
 import { DateTitle } from "@/component/routine/dateTitle";
-import { IRecord, IRoutine } from "@/domain/routine.model";
+import { IRecord, ITodo } from "@/domain/routine.model";
 import { useRoutineViewAction, useRoutineViewStack } from "@/store/routineView.store";
 import { router, useLocalSearchParams } from "expo-router";
+import LottieView from "lottie-react-native";
 import { useState } from "react";
 import { View, Text, ScrollView, Pressable } from "react-native";
 
@@ -15,6 +16,7 @@ import { View, Text, ScrollView, Pressable } from "react-native";
 export default function RoutinePage() {
 
   const routineList = routineDummy;
+  const todoList = todoDummy;
   const recordList = recordDummy;
   const groupList = groupDummy;
 
@@ -40,7 +42,16 @@ export default function RoutinePage() {
 
   const handleRecordPress = (recordId: number) => {
     setLongPressedId(null);
-    setTodayRecords(prev => prev.map(item => item.id === recordId ? { ...item, status: !(item.status ?? false) } : item));
+    setTodayRecords(prev => prev.map(item => item.id === recordId
+      ? { ...item, status: !(item.status ?? false) }
+      : item));
+  };
+
+  const handleTodoPress = (todoId: number) => {
+    setLongPressedId(null);
+    setTodayRecords(prev => prev.map(item => item.todoId === todoId
+      ? { ...item, status: !(item.status ?? false) }
+      : item));
   };
 
   const handleSubmit = async (e: any) => {
@@ -91,7 +102,10 @@ export default function RoutinePage() {
                   );
                 })}
                 {addingTarget?.type === 'group' && addingTarget.id === group.id &&
-                  <WhiteInputBox click={() => { handleSubmit(routineInfo), setAddingTarget(null) }} onChangeText={(value) => handleForm('name', value)} />
+                  <WhiteInputBox
+                    click={() => { handleSubmit(routineInfo), setAddingTarget(null) }}
+                    onChangeText={(value) => handleForm('name', value)}
+                  />
                 }
                 <View className="h-px my-3 w-full bg-gray-300" />
               </View>
@@ -113,10 +127,22 @@ export default function RoutinePage() {
           <View className="h-px my-3 w-full bg-gray-300" />
           <Text className="text-3xl">📋To-Do List</Text>
           <View className="h-px my-2 w-full " />
-          {routineList && routineList.map((vv: IRoutine, i: number) =>
-            <View key={vv.id} className="flex-row min-h-3 ">
-              <Checkbox checked={false} title={vv?.name ?? ''} />
-            </View>
+          {todoList && todoList.map((todo: ITodo, i: number) => {
+            const record = todayRecords.find(record => record.todoId === todo.id);
+             if (!record) return null;
+            return (
+              <View key={todo.id} className="flex-row min-h-3 ">
+                <View key={todo.id} className="flex-row">
+                  <Checkbox
+                    checked={record?.status ?? false}
+                    title={todo?.name ?? ''}
+                    isLongPressed={longPressedId === todo.id}
+                    onLongPress={() => setLongPressedId(todo.id!)}
+                    onPress={() => handleTodoPress(todo.id!)}
+                  />
+                </View>
+              </View>)
+          }
           )}
           {addingTarget?.type === 'todo' ?
             <WhiteInputBox click={() => { handleSubmit(routineInfo), setAddingTarget(null) }} onChangeText={(value) => handleForm('name', value)} />
