@@ -6,7 +6,7 @@ export default function LoginPage() {
 
   const handleGoogleLogin = () => {
     console.log('Google Login');
-     router.push('./');
+     router.push('./routine');
   };
 
   return (
