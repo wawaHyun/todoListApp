@@ -28,7 +28,6 @@ export default function RoutinePage() {
 
   const [addingTarget, setAddingTarget] = useState<{ type: 'group' | 'ungrouped' | 'todo'; id?: number } | null>(null);
   const [openMenu,setOpenMenu] = useState(false);
-  
   const routienAct = useRoutineViewAction();
   const routineInfo = useRoutineViewStack();
 

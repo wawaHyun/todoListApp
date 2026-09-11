@@ -1,9 +1,12 @@
 import { Pressable, Text, View } from 'react-native';
 import GoogleGlogo from '../../../assets/GoogleGlogo.svg';
+import { router } from 'expo-router';
 
 export default function LoginPage() {
+
   const handleGoogleLogin = () => {
     console.log('Google Login');
+     router.push('./routine');
   };
 
   return (
