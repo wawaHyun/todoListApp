@@ -16,7 +16,6 @@ export function BottomButton({ children, onPress, style='', select=false}: IButt
         </Pressable>
     )
 }
-
 export const RoundButton = ({ children, onPress, style='', select=false}: IButton) => {
     return (
         <Pressable onPress={onPress}
@@ -25,7 +24,6 @@ export const RoundButton = ({ children, onPress, style='', select=false}: IButto
         </Pressable>
     )
 }
-
 export const ModifyButton = ({ children, onPress, style='', select=false}: IButton) => {
     return (
         <Pressable onPress={onPress} className={`w-[15%] ${style} ${select ? 'bg-slate-500' : ''}`}>
@@ -33,7 +31,6 @@ export const ModifyButton = ({ children, onPress, style='', select=false}: IButt
         </Pressable>
     )
 }
-
 export const AddButton = ({ children, onPress, style='', select=false}: IButton) => {
     return (
         <Pressable onPress={onPress} className={`w-[15%] ${style} ${select ? 'bg-slate-500' : ''}`}>
@@ -41,7 +38,6 @@ export const AddButton = ({ children, onPress, style='', select=false}: IButton)
         </Pressable>
     )
 }
-
 export const DoneButton = ({ children, onPress, style='', select=false}: IButton) => {
     return (
         <Pressable onPress={onPress} className={`w-[15%] ${style} ${select ? 'bg-slate-500' : ''}`}>
@@ -49,13 +45,19 @@ export const DoneButton = ({ children, onPress, style='', select=false}: IButton
         </Pressable>
     )
 }
-
-
 export const DeleteButton = ({ onPress, style='', select=false}: IButton) => {
     return (
         <Pressable onPress={onPress}
             className={`w-[15%] ${style} ${select ? 'bg-slate-300' : ''}`}>
             <Text className="text-center text-2xl mt-1">X</Text>
+        </Pressable>
+    )
+}
+export const HamburgerButton = ({ onPress, style='', select=false}: IButton) => {
+    return (
+        <Pressable onPress={onPress}
+            className={`w-[15%] ${style} ${select ? 'bg-slate-300' : ''}`}>
+            <Text className="text-center text-5xl mt-1">☰</Text>
         </Pressable>
     )
 }

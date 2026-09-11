@@ -27,7 +27,8 @@ export default function RoutinePage() {
   );
 
   const [addingTarget, setAddingTarget] = useState<{ type: 'group' | 'ungrouped' | 'todo'; id?: number } | null>(null);
-
+  const [openMenu,setOpenMenu] = useState(false);
+  
   const routienAct = useRoutineViewAction();
   const routineInfo = useRoutineViewStack();
 
@@ -47,6 +48,10 @@ export default function RoutinePage() {
     const data = { ...routineInfo, date: todayDate };
     routienAct.update(data);
     console.log('save routineInfo : ' + JSON.stringify(data))
+  }
+    const handleMenu = async (e:any)=>{
+    setOpenMenu(!false)
+    
   }
 
   return (
