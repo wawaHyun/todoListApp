@@ -1,11 +1,11 @@
 
-import { IroutineView } from '@/domain/common.model'
+import { IRoutineView } from '@/domain/common.model'
 import { create } from 'zustand'
 
 interface routineViewState {
-    data: IroutineView,
+    data: IRoutineView,
     action:{
-        update: (data: IroutineView) => void,
+        update: (data: IRoutineView) => void,
         clean : () => void,
     },
 }
@@ -13,21 +13,21 @@ interface routineViewState {
 const useRoutineViewStore = create<routineViewState>()((set,get) => ({
     data: {
             id : 0, 
-            name:'', 
+            rname:'', 
             status: false,
             date : '',
             ggroupId:0,
-            recordId:0,
+            routineId:0,
     },
     action: {
-        update: (data: IroutineView) => set({ data }),
+        update: (data: IRoutineView) => set({ data }),
         clean: () => {set({ data:{
             id : 0, 
-            name:'',
+            rname:'',
             status:false,
             date : '',
             ggroupId:0,
-            recordId:0,
+            routineId:0,
         }, }), console.log("RoutineVeiwState clean : ", get().data)}
     },
 }))

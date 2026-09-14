@@ -1,5 +1,5 @@
 
-import { IMessenger, IroutineView } from "@/domain/common.model";
+import { IMessenger, IRoutineView } from "@/domain/common.model";
 import { IGgroup, IRecord, IRoutine } from "@/domain/routine.model"
 
 export const routineDummy: IRoutine[] = [
@@ -49,17 +49,21 @@ export const messengerDummy: IMessenger[] = [
     { id: 1, message: 'trueDummy' },
 ]
 
-export const routineViewDummy: IroutineView[] = [
-    { id: 1, rname: '아침에 물 한 잔', status: true, date: '2026-09-29', ggroupId: 1, routineId: 101 },
-    { id: 2, rname: '영양제 먹기', status: false, date: '2026-09-29', ggroupId: 1, routineId: 102 },
-    { id: 3, rname: '30분 운동하기', status: true, date: '2026-09-29', ggroupId: 2, routineId: 103 },
-    { id: 4, rname: '영어 공부하기', status: false, date: '2026-09-29', ggroupId: 2, routineId: 104 },
-    { id: 5, rname: '책 10페이지 읽기', status: true, date: '2026-09-29', ggroupId: 3, routineId: 105 },
-    { id: 6, rname: '잠들기 전 스트레칭', status: false, date: '2026-09-29', ggroupId: 3, routineId: 106 },
-    { id: 7, rname: '방 정리하기', status: true, date: '2026-09-29', ggroupId: 4, routineId: 107 },
-    { id: 8, rname: '일기 쓰기', status: false, date: '2026-09-29', ggroupId: 5, routineId: 108 },
-    { id: 9, rname: 'todo일기 쓰기1', status: false, date: '2026-09-29', todoId: 109 },
-    { id: 10, rname: 'todo일기 쓰기2', status: true, date: '2026-09-29', todoId: 110 },
-    { id: 11, rname: 'todo일기 쓰기3', status: false, date: '2026-09-29',todoId: 111 },
+export const routineViewDummy: IRoutineView[] = [
+    { id: 1, gname:'english', rname: '아침에 물 한 잔', status: true, date: '2026-09-29', ggroupId: 1, routineId: 101 },
+    { id: 2, gname:'english', rname: '영양제 먹기', status: false, date: '2026-09-29', ggroupId: 1, routineId: 102 },
+    { id: 3, gname:'Japanese', rname: '30분 운동하기', status: true, date: '2026-09-29', ggroupId: 2, routineId: 103 },
+    { id: 4, gname:'Japanese', rname: '영어 공부하기', status: false, date: '2026-09-29', ggroupId: 2, routineId: 104 },
+    { id: 5, gname:'healthy', rname: '책 10페이지 읽기', status: true, date: '2026-09-29', ggroupId: 3, routineId: 105 },
+    { id: 6, gname:'healthy', rname: '잠들기 전 스트레칭', status: false, date: '2026-09-29', ggroupId: 3, routineId: 106 },
+    { id: 7, gname:'english', rname: '방 정리하기', status: true, date: '2026-09-29', ggroupId: 1, routineId: 107 },
+    { id: 8, gname:'healthy', rname: '일기 쓰기', status: false, date: '2026-09-29', ggroupId: 3, routineId: 108 },
+
+    { id: 9, rname: '선인장 물주기', status: true, date: '2026-09-29', routineId: 109 },
+    { id: 10, rname: '노래연습~!', status: false, date: '2026-09-29',routineId: 110},
+
+    { id: 11, tname: 'todo일기 쓰기1', status: false, date: '2026-09-29', todoId: 111 },
+    { id: 12, tname: 'todo일기 쓰기2', status: true, date: '2026-09-29', todoId: 112 },
+    { id: 13, tname: 'todo일기 쓰기3', status: false, date: '2026-09-29',todoId: 113 },
 ];
 

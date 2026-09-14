@@ -8,7 +8,7 @@ export interface IMessenger {
     refreshToken?: string,
 }
 
-export interface IroutineView {
+export interface IRoutineView {
     id?: number,
     gname?: string,
     rname?: string,
