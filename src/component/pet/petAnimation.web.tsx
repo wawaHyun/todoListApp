@@ -1,5 +1,5 @@
-import { PetCatAsciiArt } from "@/common/atoms/Pet";
+import { PetSeepAsciiArt } from "@/common/atoms/Pet";
 
 export function PetAnimation() {
-  return <PetCatAsciiArt />
+  return <PetSeepAsciiArt />
 }

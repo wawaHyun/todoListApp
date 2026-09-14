@@ -1,6 +1,6 @@
-import { Pressable, View } from 'react-native';
 import { useRouter } from 'expo-router';
-import { BottomButton } from '../atoms/button';
+import { Pressable, View } from 'react-native';
+import { BottomButton } from '../button/button';
 
 export default function BottomMenu() {
 
@@ -10,13 +10,13 @@ export default function BottomMenu() {
     <Pressable onPress={() => router.push('/')}className="items-center">
       <View className="flex-row ">
         <View className="flex-1">
-          <BottomButton style="text-black w-full h-full text-center " click={()=>router.push('/')} >HOME</BottomButton>
+          <BottomButton style="text-black w-full h-full text-center " onPress={()=>router.push('/')} >HOME</BottomButton>
         </View>
            <View className="flex-1">
-          <BottomButton style="text-black w-full h-full text-center " click={()=>router.push('/')} >Routine List</BottomButton>
+          <BottomButton style="text-black w-full h-full text-center " onPress={()=>router.push('/')} >Routine List</BottomButton>
         </View>
            <View className="flex-1">
-          <BottomButton style="text-black w-full h-full text-center " click={()=>router.push('/pet')} >My Gochi</BottomButton>
+          <BottomButton style="text-black w-full h-full text-center " onPress={()=>router.push('/pet')} >My Gochi</BottomButton>
         </View>
       </View>
     </Pressable>

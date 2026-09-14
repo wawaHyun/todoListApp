@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import { View, Text, Pressable } from 'react-native';
-import { PetScript } from '@/common/data/pet.dummy';
 import { PetAnimation } from '@/component/pet/petAnimation';
+import { PetScript } from '@/common/data/pet.dummy';
 
 export default function PetPage() {
     const router = useRouter();

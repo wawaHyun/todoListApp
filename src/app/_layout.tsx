@@ -1,8 +1,6 @@
-import '../global.css';
 import ReactQueryProviders from '@/common/hooks/useReactQuery';
-import BottomMenu from '@/common/navigation/bottomMenu';
-import PetNavi from '@/common/navigation/petNavi';
-import { Slot, usePathname } from 'expo-router';
+import '../global.css';
+import { Slot } from 'expo-router';
 import { View } from 'react-native';
 import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
 
@@ -11,7 +9,6 @@ import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-cont
 
 function AppLayout() {
   const insets = useSafeAreaInsets();
-  const pathname = usePathname();
 
   return (
     <View
@@ -22,7 +19,7 @@ function AppLayout() {
       }}
     >
       
-  <View className="z-0 flex-[10] ">
+  <View className="relative z-0 flex-[10]">
     <Slot />
   </View>
 

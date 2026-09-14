@@ -21,20 +21,17 @@ export function PetIcon({ style = '', select = false, status = 'normal' }: IPet)
     )
 }
 export function PetSeepAsciiArt() {
-    return (
-        <Text>
-            ,〜⌒⌒､⌒ヽ
-            (⊂,~〜､⊃）） ) )
-            ((ξ･ ﻌ ･๑Ҙ)　)　）
-            (　~　ノ(　ﾉ ﾉ
-            ヽ〜 〜 ノノ
-            UU￣UU
-        </Text>
-    )
+    const art = `  ,〜⌒⌒､⌒ヽ
+(⊂,~〜､⊃）） ) )
+((ξ･ ﻌ ･๑Ҙ)　)　）
+ (　~　ノ(　ﾉ ﾉ
+  ヽ〜 〜 ノノ
+     UU￣UU`
+    return <Text>{art}</Text>
 }
 export function PetRabbitAsciiArt() {
-    return (
-        <Text>
+    const art =
+       `
             /⌒ ヽ　  　/ ⌒ \
             ｜   ｜|　  　|｜    |
             ｜   ｜|　  　|｜    |
@@ -44,9 +41,8 @@ export function PetRabbitAsciiArt() {
             /　　　　　　     \
             /　      　　 　　     \
             (　  ●　　ο　　●　 )
-        /////          /////
-        </Text>
-    )
+        /////          /////`
+    return <Text>{art}</Text>
 }
 export function PetCatAsciiArt() {
     return (

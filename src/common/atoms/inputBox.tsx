@@ -1,5 +1,5 @@
 import { TextInput, View } from "react-native";
-import { DoneButton } from "./button";
+import { DoneButton } from "../button/button";
 
 interface Iinputbox {
     children?: React.ReactNode;

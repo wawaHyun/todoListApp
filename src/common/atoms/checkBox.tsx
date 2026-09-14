@@ -1,6 +1,5 @@
 import { Pressable, Text, View } from 'react-native';
-import { DeleteButton, ModifyButton } from './button';
-import { useState } from 'react';
+import { DeleteButton, ModifyButton } from '../button/button';
 
 interface ICheckbox {
     checked: boolean;

@@ -1,11 +1,11 @@
 import { Pressable,Text, View } from "react-native";
-import { WhiteInputBox } from "./inputBox";
 
-interface IButton {
+export interface IButton {
     children?: React.ReactNode;
     onPress: () => void;
     style?: string;
     select?: boolean;
+    isOpen?:boolean;
 }
 
 export function BottomButton({ children, onPress, style='', select=false}: IButton) {
@@ -50,14 +50,6 @@ export const DeleteButton = ({ onPress, style='', select=false}: IButton) => {
         <Pressable onPress={onPress}
             className={`w-[15%] ${style} ${select ? 'bg-slate-300' : ''}`}>
             <Text className="text-center text-2xl mt-1">X</Text>
-        </Pressable>
-    )
-}
-export const HamburgerButton = ({ onPress, style='', select=false}: IButton) => {
-    return (
-        <Pressable onPress={onPress}
-            className={`w-[15%] ${style} ${select ? 'bg-slate-300' : ''}`}>
-            <Text className="text-center text-5xl mt-1">☰</Text>
         </Pressable>
     )
 }
