@@ -27,9 +27,7 @@ export default function RoutinePage() {
   // const specifiedDate = date ?? todayDate;
   const specifiedDate = date ?? '2026-09-30';
 
-  const [todayRecords, setTodayRecords] = useState<IRecord[]>(
-    recordList.filter(record => record.date === specifiedDate)
-  );
+  const [todayRecords, setTodayRecords] = useState<IRecord[]>(recordList.filter(record => record.date === specifiedDate));
 
   const [addingTarget, setAddingTarget] = useState<{ type: 'group' | 'ungrouped' | 'todo'; id?: number } | null>(null);
   const [openMenu, setOpenMenu] = useState(false);
@@ -80,7 +78,7 @@ export default function RoutinePage() {
                 <HamMenu />
               </Animated.View>
             )}
-            
+
           </View>
         </View>
       </View>
