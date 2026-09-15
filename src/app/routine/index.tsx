@@ -91,7 +91,7 @@ const handleSubmit = async (e: any) => {
           <Text className="text-3xl mt-2">✅ My routine group</Text>
           <View className="h-px my-2 w-full " />
 
-          {Object.entries(recordList?.filter((v) => v.routineId != null).reduce<Record<string, typeof recordList>>((acc, v) => {
+          {Object.entries(recordList?.filter((v) =>v.date === specifiedDate &&  v.routineId != null).reduce<Record<string, typeof recordList>>((acc, v) => {
             const key = v.ggroupId != null ? String(v.ggroupId) : 'ungrouped';
             (acc[key] ??= []).push(v);
             return acc;
@@ -124,7 +124,7 @@ const handleSubmit = async (e: any) => {
           <View className="h-px my-2 w-full " />
           {recordList && recordList?.map((v) => (
             <View key={v.id}>
-              {v.routineId == null && (
+              {v.date === specifiedDate && v.routineId == null && (
                 <View className="flex-row">
                   <Checkbox checked={v.status ?? false} title={v.tname} isLongPressed={longPressedId === v.id}
                     onLongPress={() => setLongPressedId(v.id!)} onPress={() => handleTodoPress(v.todoId!)} />
