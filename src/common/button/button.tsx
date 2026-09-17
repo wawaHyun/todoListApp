@@ -27,7 +27,7 @@ export const RoundButton = ({ children, onPress, style = '', select = false }: I
 export const ModifyButton = ({ children, onPress, style = '', select = false }: IButton) => {
     return (
         <Pressable onPress={onPress} className={`w-[15%] justify-center ${style} ${select ? 'bg-slate-500' : ''}`}>
-            <Image source={require('@/assets/edit-icon.png')} className="w-[25px] h-[25px]" />
+            <Image source={require('@/assets/editIcon.png')} className="w-[25px] h-[25px]" />
         </Pressable>
     )
 }

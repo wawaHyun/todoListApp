@@ -1,6 +1,6 @@
 import { useRouter } from 'expo-router';
 import { Calendar, DateData } from 'react-native-calendars';
-import { View, Text, Pressable } from 'react-native';
+import { View, Text } from 'react-native';
 
 export default function CalendarPage() {
   const router = useRouter();

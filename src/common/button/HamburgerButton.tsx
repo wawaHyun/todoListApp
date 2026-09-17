@@ -14,7 +14,7 @@ export const HamburgerButton = ({ onPress, isOpen, style = '', select = false }:
     return (
         <Pressable onPress={handlePress}
             className={`w-[100px] items-center ${style} ${select ? 'bg-slate-300' : ''}`}>
-            <LottieView ref={lottieRef} source={require('@/assets/hamburger-button.json')} autoPlay={false} loop={false} style={{ width: 20, height: 20 }} />
+            <LottieView ref={lottieRef} source={require('@/assets/hamburgerButton.json')} autoPlay={false} loop={false} style={{ width: 20, height: 20 }} />
         </Pressable>
     )
 }
