@@ -2,10 +2,9 @@ import { AddButton } from "@/common/button/button";
 import { Checkbox } from "@/common/atoms/checkBox";
 import { WhiteInputBox } from "@/common/atoms/inputBox";
 import { todayDate } from "@/common/atoms/today";
-import { groupDummy, recordDummy, routineDummy, routineViewDummy, todoDummy } from "@/common/data/routine.dummy";
+import { routineViewDummy } from "@/common/data/routine.dummy";
 import { PetAnimation } from "@/component/pet/petAnimation";
 import { DateTitle } from "@/component/routine/dateTitle";
-import { IRecord, ITodo } from "@/domain/routine.model";
 import { useRoutineViewAction, useRoutineViewStack } from "@/store/routineView.store";
 import { router, useLocalSearchParams } from "expo-router";
 import { useState } from "react";
@@ -21,14 +20,10 @@ export default function RoutinePage() {
 
   const routineViewDummyData = routineViewDummy;
   const [recordList, setRecordList] = useState<IRoutineView[]>(routineViewDummyData);
-  // const routineList = routineDummy;
-  // const todoList = todoDummy;
-  // const recordList = recordDummy;
-  // const groupList = groupDummy;
 
   const { date } = useLocalSearchParams<{ date?: string }>();
-  // const specifiedDate = date ?? todayDate;
-  const specifiedDate = date ?? '2026-09-30';
+  const specifiedDate = date ?? todayDate;
+  // const specifiedDate = date ?? '2026-09-30';
 
 const [isAddingRoutine, setIsAddingRoutine] = useState(false);
 const [isAddingTodo, setIsAddingTodo] = useState(false);
@@ -104,7 +99,8 @@ const handleSubmit = async (e: any) => {
               )}
               {routines.map((v) => (
                 <View key={v.id} className="flex-row">
-                  {v.ggroupId == null && <View className="w-5" />}
+                  {/* {v.ggroupId! && <View className="w-5" />} */}
+                  {v.ggroupId! && <Text> ㄴ</Text>}
                   <Checkbox checked={v.status ?? false} title={v.rname} isLongPressed={longPressedId === v.id}
                     onLongPress={() => setLongPressedId(v.id!)} onPress={() => handleRoutinePress(v.routineId!)} />
                 </View>
