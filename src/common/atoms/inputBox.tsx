@@ -14,7 +14,7 @@ interface Iinputbox {
 export const WhiteInputBox = ({ children, click, onChangeText, value, style = '', select = false }: Iinputbox) => {
     return (
         <View className="flex-row gap-2">
-            <TextInput placeholder="루틴을 작성하세요." className="flex-1 bg-white rounded-lg px-4 py-3"
+            <TextInput placeholder="You can do it everythings!" className="flex-1 bg-white rounded-lg px-4 py-3 border border-slate-400"
                 onChangeText={onChangeText} value={value} />
             <DoneButton onPress={click} />
         </View>
