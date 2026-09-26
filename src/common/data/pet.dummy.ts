@@ -1,7 +1,14 @@
 import { IPetScript } from "@/domain/common.model";
+import {IPetView} from "@/domain/pet.model.js"
 
 export const PetScript: IPetScript[] = [
     { id: 0, script: ['오늘도 화이팅냐!', '안녕! 좋은 아침이냐!', '오늘도 냐랑 같이 해볼까냐?', '조금만 더 힘내냐!', '루틴 하나 완료할까냐?', '오늘도 잘하고 있다냐!'] },
     { id: 1, script: ['어서 와라 멍!', '오늘은 뭘 해볼까 멍?', '나랑 같이 하자멍!', '잘하고 있멍!', '하나 끝냈멍!'] },
     { id: 2, script: ['cool 아침!', '오늘도 cool!', 'you can do it cool!', 'litle more cooler!'] }
+];
+
+export const petDummy: IPetView[] = [
+    { id: 1, name: '토끼고치', level: 12, exp: 72, nextExp: 100, image: '🐰', isRepresentative: true },
+    { id: 2, name: '멍고치', level: 7, exp: 35, nextExp: 70, image: '🐶', isRepresentative: false },
+    { id: 3, name: '냥고치', level: 4, exp: 18, nextExp: 50, image: '🐱', isRepresentative: false },
 ];

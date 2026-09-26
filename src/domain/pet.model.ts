@@ -17,3 +17,13 @@ export interface IPet {
     userId?: number;
     petTypeId?: number;
 }
+
+export interface IPetView {
+    id: number;
+    name: string;
+    level: number;
+    exp: number;
+    nextExp: number;
+    image: string;
+    isRepresentative: boolean;
+}

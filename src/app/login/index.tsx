@@ -1,5 +1,5 @@
 import { Pressable, Text, View } from 'react-native';
-import GoogleGlogo from '../../../assets/google-logo.svg';
+import GoogleGlogo from '../../../assets/googleLogo.svg';
 import { router } from 'expo-router';
 
 export default function LoginPage() {
