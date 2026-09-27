@@ -50,14 +50,14 @@ export const messengerDummy: IMessenger[] = [
 ]
 
 export const routineViewDummy: IRoutineView[] = [
-    { id: 1, gname:'english', rname: '아침에 물 한 잔', status: true, date: '2026-09-29', ggroupId: 1, routineId: 101 },
-    { id: 2, gname:'english', rname: '영양제 먹기', status: false, date: '2026-09-29', ggroupId: 1, routineId: 102 },
-    { id: 3, gname:'Japanese', rname: '30분 운동하기', status: true, date: '2026-09-29', ggroupId: 2, routineId: 103 },
-    { id: 4, gname:'Japanese', rname: '영어 공부하기', status: false, date: '2026-09-29', ggroupId: 2, routineId: 104 },
-    { id: 5, gname:'healthy', rname: '책 10페이지 읽기', status: true, date: '2026-09-29', ggroupId: 3, routineId: 105 },
-    { id: 6, gname:'healthy', rname: '잠들기 전 스트레칭', status: false, date: '2026-09-29', ggroupId: 3, routineId: 106 },
-    { id: 7, gname:'english', rname: '방 정리하기', status: true, date: '2026-09-29', ggroupId: 1, routineId: 107 },
-    { id: 8, gname:'healthy', rname: '일기 쓰기', status: false, date: '2026-09-29', ggroupId: 3, routineId: 108 },
+    { id: 1, gname:'english',  gcolor:'ROSE', rname: '아침에 물 한 잔', status: true, date: '2026-09-29', ggroupId: 1, routineId: 101 },
+    { id: 2, gname:'english',  gcolor:'ORANGE', rname: '영양제 먹기', status: false, date: '2026-09-29', ggroupId: 1, routineId: 102 },
+    { id: 3, gname:'Japanese', gcolor:'AMBER',  rname: '30분 운동하기', status: true, date: '2026-09-29', ggroupId: 2, routineId: 103 },
+    { id: 4, gname:'Japanese', gcolor:'LIME',  rname: '영어 공부하기', status: false, date: '2026-09-29', ggroupId: 2, routineId: 104 },
+    { id: 5, gname:'healthy',  gcolor:'GREEN', rname: '책 10페이지 읽기', status: true, date: '2026-09-29', ggroupId: 3, routineId: 105 },
+    { id: 6, gname:'healthy',  gcolor:'TEAL', rname: '잠들기 전 스트레칭', status: false, date: '2026-09-29', ggroupId: 3, routineId: 106 },
+    { id: 7, gname:'english',  gcolor:'SKY', rname: '방 정리하기', status: true, date: '2026-09-29', ggroupId: 1, routineId: 107 },
+    { id: 8, gname:'healthy',  gcolor:'VIOLET', rname: '일기 쓰기', status: false, date: '2026-09-29', ggroupId: 3, routineId: 108 },
 
     { id: 9, rname: '선인장 물주기', status: true, date: '2026-09-29', routineId: 109 },
     { id: 10, rname: '노래연습~!', status: false, date: '2026-09-29',routineId: 110},
