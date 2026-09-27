@@ -11,10 +11,12 @@ export interface IMessenger {
 export interface IRoutineView {
     id?: number,
     gname?: string,
+    gcolor?:string,
     rname?: string,
     tname?: string,
     status?: boolean,
     date?: string,
+
     userId?:number,
     ggroupId?: number,
     routineId?: number,

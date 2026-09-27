@@ -14,6 +14,7 @@ import { HamburgerButton } from "@/common/button/HamburgerButton";
 import Animated from 'react-native-reanimated';
 import { useMenuAnimation } from "@/common/animation/menu.Animation";
 import { IRoutineView } from "@/domain/common.model";
+import { groupColors } from "@/common/data/group.color";
 
 
 export default function RoutinePage() {
@@ -25,8 +26,9 @@ export default function RoutinePage() {
   const specifiedDate = date ?? todayDate;
   // const specifiedDate = date ?? '2026-09-30';
 
-const [isAddingRoutine, setIsAddingRoutine] = useState(false);
-const [isAddingTodo, setIsAddingTodo] = useState(false);
+  const [isAddingRoutine, setIsAddingRoutine] = useState(false);
+  const [isAddingTodo, setIsAddingTodo] = useState(false);
+   const [addingTarget, setAddingTarget] = useState<{ type: 'group' | 'ungrouped' | 'todo'; id?: number } | null>(null);
   const [openMenu, setOpenMenu] = useState(false);
 
   const routienAct = useRoutineViewAction();
@@ -40,36 +42,36 @@ const [isAddingTodo, setIsAddingTodo] = useState(false);
     console.log('routineInfo : ' + JSON.stringify(routineInfo))
   };
 
- const handleRoutinePress = (routineId: number) => {
+  const handleRoutinePress = (routineId: number) => {
     setLongPressedId(null);
     setRecordList(prev => prev.map(item => item.routineId === routineId ? { ...item, status: !(item.status ?? false) } : item));
   };
- const handleTodoPress = (todoId: number) => {
+  const handleTodoPress = (todoId: number) => {
     setLongPressedId(null);
     setRecordList(prev => prev.map(item => item.todoId === todoId ? { ...item, status: !(item.status ?? false) } : item));
   };
 
 
-const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: any) => {
     const data = { ...routineInfo, date: specifiedDate };
     routienAct.update(data);
     console.log('save routineInfo : ' + JSON.stringify(data));
-};
+  };
   const handleMenu = async () => {
     setOpenMenu(prev => !prev)
     // console.log('menu : ', openMenu)
   }
 
   return (
-    <View className="relative flex-1">
+    <View className="flex-1">
       <View className="relative z-30">
-        <View className="flex-row justify-between items-center bg-slate-200 my-5">
+        <View className="flex-row justify-between items-center bg-slate-200 py-3">
           <DateTitle today={specifiedDate} />
-          <View className="relative mr-3"><HamburgerButton onPress={handleMenu} isOpen={openMenu} /></View>
+          <View className="mr-3"><HamburgerButton onPress={handleMenu} isOpen={openMenu} /></View>
         </View>
 
         {openMenu && (
-          <Animated.View style={[menuStyle, { position: 'absolute', top: 80, right: 10, width: 100, zIndex: 50 }]}          >
+          <Animated.View style={[menuStyle, { position: 'absolute', top: 50, right: 10, width: 100, zIndex: 50 }]}          >
             <HamMenu />
           </Animated.View>
         )}
@@ -80,18 +82,19 @@ const handleSubmit = async (e: any) => {
       </Pressable>
 
 
-      <ScrollView>
-        <View className="flex-1">
-          <View className="h-px my-3 w-full bg-gray-300" />
+      <ScrollView className="flex-1">
+        <View className="h-px my-3 w-full bg-gray-300" />
+        <View className="min-h-[50vh] mx-2">
           <Text className="text-3xl mt-2">✅ My routine group</Text>
           <View className="h-px my-2 w-full " />
 
-          {Object.entries(recordList?.filter((v) =>v.date === specifiedDate &&  v.routineId != null).reduce<Record<string, typeof recordList>>((acc, v) => {
+          {Object.entries(recordList?.filter((v) => v.date === specifiedDate && v.routineId != null).reduce<Record<string, typeof recordList>>((acc, v) => {
             const key = v.ggroupId != null ? String(v.ggroupId) : 'ungrouped';
             (acc[key] ??= []).push(v);
             return acc;
           }, {}) ?? {}).map(([groupId, routines]) => (
-            <View key={groupId}>
+            <View key={groupId} className="p-5 mb-2 border border-dashed rounded-lg"
+              style={{ backgroundColor: groupColors.light[routines[0].gcolor as keyof typeof groupColors.light] ?? '#FFFFFF' }} >
               {groupId !== 'ungrouped' && (
                 <View className="flex-row justify-between">
                   <Text className="text-xl font-bold">{routines[0].gname}</Text>
@@ -107,30 +110,34 @@ const handleSubmit = async (e: any) => {
               ))}
             </View>
           ))}
-          <View>
-            {isAddingRoutine ?
-              <WhiteInputBox click={() => { handleSubmit(routineInfo)}} onChangeText={(value) => handleForm('name', value)} />
-              : <AddButton onPress={() => setIsAddingRoutine(true)} style="w-[15%] w-full" />}
+          <View className="pt-5">
+            {addingTarget?.type === 'ungrouped' ?
+              <WhiteInputBox click={() => { handleSubmit(routineInfo) }} onChangeText={(value) => handleForm('name', value)} />
+              : <AddButton onPress={() =>setAddingTarget({ type: 'ungrouped' })} style="w-[15%] w-full" />}
           </View>
         </View>
 
-        <View className="min-h-[50vh] ">
-          <View className="h-px my-3 w-full bg-gray-300" />
+        <View className="h-px my-3 w-full bg-gray-300" />
+        <View className="min-h-[50vh] mx-2">
           <Text className="text-3xl">📋To-Do List</Text>
           <View className="h-px my-2 w-full " />
-          {recordList && recordList?.map((v) => (
-            <View key={v.id}>
-              {v.date === specifiedDate && v.routineId == null && (
-                <View className="flex-row">
-                  <Checkbox checked={v.status ?? false} title={v.tname} isLongPressed={longPressedId === v.id}
-                    onLongPress={() => setLongPressedId(v.id!)} onPress={() => handleTodoPress(v.todoId!)} />
-                </View>
-              )}
+          <View className="p-5 mb-2 border border-dashed rounded-lg" >
+            {recordList && recordList?.map((v) => (
+              <View key={v.id}>
+                {v.date === specifiedDate && v.routineId == null && (
+                  <View className="flex-row">
+                    <Checkbox checked={v.status ?? false} title={v.tname} isLongPressed={longPressedId === v.id}
+                      onLongPress={() => setLongPressedId(v.id!)} onPress={() => handleTodoPress(v.todoId!)} />
+                  </View>
+                )}
+              </View>
+            ))}
+            <View className="pt-5">
+              {addingTarget?.type === 'todo' ?
+                <WhiteInputBox click={() => { handleSubmit(routineInfo) }} onChangeText={(value) => handleForm('name', value)} />
+                : <AddButton onPress={() => setAddingTarget({ type: 'todo' })} style="w-[15%] w-full" />}
             </View>
-          ))}
-          {isAddingTodo ?
-            <WhiteInputBox click={() => { handleSubmit(routineInfo)}} onChangeText={(value) => handleForm('name', value)} />
-            : <AddButton onPress={() => setIsAddingTodo(true)} style="w-[15%] w-full" />}
+          </View>
         </View>
       </ScrollView>
     </View>

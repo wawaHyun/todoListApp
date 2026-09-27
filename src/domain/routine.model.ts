@@ -28,6 +28,7 @@ export interface IRecord {
 export interface IGgroup {
     id?: number,
     name?: string
+    color?: string
 
     userId?:number,
 }

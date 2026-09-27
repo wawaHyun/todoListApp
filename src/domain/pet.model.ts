@@ -24,6 +24,6 @@ export interface IPetView {
     level: number;
     exp: number;
     nextExp: number;
-    image: string;
+    image: any;
     isRepresentative: boolean;
 }

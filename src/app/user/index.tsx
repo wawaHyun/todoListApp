@@ -1,6 +1,8 @@
 import { ScrollView, Text, View, Pressable } from 'react-native';
 import { useState } from 'react';
 import { petDummy } from '@/common/data/pet.dummy';
+import { myPageMenu } from '@/common/data/menu';
+import { router } from 'expo-router';
 
 export default function MyPage() {
     const [nickname, setNickname] = useState('고치유저');
@@ -138,27 +140,14 @@ export default function MyPage() {
 
                 <View className="mt-8">
                     <Text className="text-xl font-bold">RoutineGochi</Text>
-
                     <View className="mt-4 overflow-hidden rounded-3xl bg-gray-50">
-                        <Pressable className="flex-row items-center justify-between border-b border-gray-200 px-5 py-4">
-                            <Text className="text-base">대표 펫 변경</Text>
+                    {myPageMenu.map((v) => (
+                        <Pressable key={v.id} onPress={() => router.push(v.href)} className="flex-row items-center justify-between border-b border-gray-200 px-5 py-4">
+                            <Text className="text-base">{v.menu}</Text>
                             <Text className="text-gray-400">›</Text>
                         </Pressable>
-
-                        <Pressable className="flex-row items-center justify-between border-b border-gray-200 px-5 py-4">
-                            <Text className="text-base">알림 설정</Text>
-                            <Text className="text-gray-400">›</Text>
-                        </Pressable>
-
-                        <Pressable className="flex-row items-center justify-between border-b border-gray-200 px-5 py-4">
-                            <Text className="text-base">앱 정보</Text>
-                            <Text className="text-gray-400">›</Text>
-                        </Pressable>
-
-                        <Pressable className="flex-row items-center justify-between px-5 py-4">
-                            <Text className="text-base text-red-500">로그아웃</Text>
-                            <Text className="text-gray-400">›</Text>
-                        </Pressable>
+                    ))}
+                        
                     </View>
                 </View>
 
